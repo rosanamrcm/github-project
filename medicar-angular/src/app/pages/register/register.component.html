@@ -1,0 +1,57 @@
+<div class="container-login" fxLayout="row" fxLayoutAlign="center center" >
+  <div class="box-input" fxLayout="column" 
+    fxLayoutAlign="flex-start flex-start" 
+    fxFlex="30"
+    fxFlex.lg="30"  
+    fxFlex.gt-sm ="40"
+    fxFlex.gt-xs ="50"
+    fxFlex.xs="90"
+  >
+
+    <img class="logo" src="./assets/Logo.png">
+    <span>Crie sua conta</span>
+
+    <form class="form" (ngSubmit)="onSubmit()" #form="ngForm" fxLayout="column" fxLayoutAlign="center center">
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input type="text" matInput placeholder="nome"[(ngModel)]="account.username" name="username">
+      </mat-form-field>
+   
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Email</mat-label> 
+        <input type="email" matInput [formControl]="emailFormControl" placeholder="email" [(ngModel)]="account.email" name="email" >
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Digite um email válido
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+ 
+      <mat-form-field appearance="outline" class="input-password">
+        <mat-label>Senha</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="account.password" name="password">
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+  
+      <mat-form-field appearance="outline" class="input-password">
+        <mat-label>Confirmar Senha</mat-label>
+        <input matInput [type]="hideConfirmPasword ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hideConfirmPasword = !hideConfirmPasword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPasword">
+          <mat-icon>{{hideConfirmPasword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    
+
+      <div class="buttons" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-button type="button" color="primary" routerLink="/login">Cancelar</button>
+        <button mat-flat-button  type="submit" color="primary">Confirmar</button>
+      </div>
+
+    </form>    
+  </div>
+</div>

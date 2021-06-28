@@ -1,0 +1,32 @@
+.container{
+	width: 100%;
+	height: 100%;
+	color: #F1EFF0;
+}
+
+.box{
+	width: 35%;
+	height: 40%;
+	//background-color: yellow;
+	h1{
+		font-size: 100px;
+		color: #FE7101;
+	}
+
+	h2{
+		font-size: 30px;
+	}
+
+	h3{
+		font-size: 24px;
+
+		mat-icon{
+			font-size: 20px;
+			margin-top: 20px;
+		}
+	}
+
+	h2, h3 {
+		color: black;
+	}
+}

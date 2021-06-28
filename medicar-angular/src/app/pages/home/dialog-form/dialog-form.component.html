@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>Nova Consulta</h2>
+<mat-dialog-content class="container">
+  <form  #form="ngForm">
+    <mat-form-field class="input-options" appearance="outline" >
+      <mat-label>Especialidades</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let specialist of responseSpecialist" [value]="specialist.nome"
+        (click)="getidSpecialties(specialist.id)" name="especialist name"> 
+          {{specialist.nome}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="input-options" appearance="outline"  >
+      <mat-label>Médico</mat-label>
+      <mat-select >
+        <mat-option *ngFor="let professional of responseProfessionals" [value]="professional.nome" 
+        (click)="getIdProfessional(professional.id)">
+          {{professional.nome}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="input-options" appearance="outline">
+      <mat-label>Data</mat-label>
+      <mat-select [(ngModel)]="selectedDay" name="selected_days">
+        <mat-option *ngFor="let schedule of responseSchedule;" [value]="schedule.dia" (click)="callHour(schedule.id)">
+          {{schedule.dia}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="input-options" appearance="outline">
+      <mat-label>Hora</mat-label>
+      <mat-select [(ngModel)]="selectedHour" name="hours">
+        <mat-option *ngFor="let horario of responseHour" [value]="horario">
+          {{horario}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row"  fxLayoutAlign="space-between center">
+  <button mat-button mat-dialog-close color="primary">Cancelar</button>
+  <button mat-flat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial (click)="onSubmit()">Confirmar</button>
+</mat-dialog-actions>

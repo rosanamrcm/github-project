@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+
+.container-login{
+	width: 100%;
+	height: 100%;
+	font-family: "Roboto", sans-serif;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	.box-input{
+
+		.logo{
+			width: 40%;
+			margin-bottom: 15px;
+		}
+		span{
+			margin-bottom: 15px;
+		}
+		.form{
+			width: 100%;
+			.input-password{
+				width: 100%;
+			}
+
+			.buttons{
+				width: 100%;
+
+				button{
+				width: 38%;
+				height: 40px;
+				font-size: 1.2em;
+				text-decoration: none;
+			}
+
+			}
+			.example-full-width{
+				width: 100%;
+				height: 75px;
+			}
+		}
+
+		.example-container{
+			width: 100%;
+			height: 75px;
+
+			.input-password{
+				width: 100%;
+			}
+		}
+
+		.input-buttons{
+			width: 100%;
+			margin-top: 20px;			
+		}
+	}
+}
+
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper {
+	height: 20px;
+	font-size: 10px;
+}

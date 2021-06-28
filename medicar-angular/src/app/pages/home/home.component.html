@@ -1,0 +1,55 @@
+<div class="container-home" fxLayout="row"  fxLayoutAlign="center center">
+	<div class="box-content" fxLayout="column" fxLayoutAlign="flex-start flex-start" 
+		fxFlex="45"
+	    fxFlex.lg="45"  
+	    fxFlex.gt-sm ="60"
+	    fxFlex.gt-xs ="80"
+	    fxFlex.xs="98"
+
+		>
+		<header fxLayout="row" fxLayoutAlign="space-between center">
+			<img src="/assets/Logo.png" class="logo" routerLink="/home">
+			<div fxLayout="row" fxLayoutAlign="space-between center">
+				<span>{{nameUser}}</span>			
+				<button mat-button color="primary" (click)="logout()">Desconectar</button>
+			</div>
+		</header>
+
+		<div class="div-content"fxLayout="column" fxLayoutAlign="flex-start center">
+			<div class="header-content" fxLayout="row" fxLayoutAlign="space-between center">
+				<span>Consulta Clínica</span>
+				<button mat-flat-button color="primary" (click)="openDialog()" fxLayout="row" fxLayoutAlign="center center">
+					<mat-icon>add</mat-icon>
+				Nova Consulta</button>
+
+			</div>
+
+			<div class="content" fxLayout="column" fxLayoutAlign="flex-start center">
+
+				<div class="description-content" fxLayout="row" fxLayoutAlign="flex-start flex-start">
+
+					<div class="header-description-content" fxLayout="row" fxLayoutAlign="space-between center">
+						<div class="box-one" fxLayout="row" fxLayoutAlign="space-between center">
+							<h2 class="title">ESPECIALIDADE</h2>
+							<h2 class="title">PROFISSIONAL</h2>
+						</div>
+
+						<div class="box-two" fxLayout="row" fxLayoutAlign="space-between center">
+							<h2 class="title">DATA</h2>
+							<h2 class="title" style="margin-right: 28%;">HORA</h2>
+						</div>						
+					</div>
+				</div>
+				
+				<div class="data" *ngFor="let appointment of returnAppointments; let o = odd; let e = even;"
+				[ngClass]="{evenitem: o, odditem: e}" fxLayout="row" fxLayoutAlign="space-between center" >
+					<span>{{appointment.medico.especialidade.nome}}</span>
+					<span class="span-professional">{{appointment.medico.nome}}</span>
+					<span style="width: 12%;">{{appointment.dia}}</span>
+					<span style=" width: 5%;">{{appointment.horario}}</span>
+					<button mat-button color="primary" (click)="DeleteAppointments(appointment.id)"><mat-icon class="icon">close</mat-icon>Desmarcar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

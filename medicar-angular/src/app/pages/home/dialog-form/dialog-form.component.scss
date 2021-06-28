@@ -1,0 +1,28 @@
+
+button{
+	border-radius: 8px;
+	width: 37.5%;
+	height: 40px;
+	font-size: 18px;
+}
+
+.container{
+	width: 480px;
+	height: 310px;
+	//background-color: red;
+
+	.input-options{
+		width: 100%;
+		//margin-top: 7px;
+	}
+	.box{
+		width: 80%;
+		height: 50%;
+		background-color: yellow;
+	}	
+}
+
+
+mat-dialog-actions  {
+	margin-bottom: 5px;
+}

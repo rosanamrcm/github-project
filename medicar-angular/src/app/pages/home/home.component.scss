@@ -1,0 +1,165 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+
+.container-home{
+	width: 100%;
+	height: 100%;
+	//background-color: purple;
+
+	.box-content{
+		width: 46%;
+		height: 100%;
+		//background-color: yellow;
+
+		header{
+			width: 100%;
+			height: 80px;
+			//margin-top: 5px;
+			//background-color: red;
+			.logo{
+				width: 15%;
+				cursor: pointer;
+			}
+
+			div{
+				width: 35%;
+				//background-color: blue;
+				span{
+					color: #A8A8A8;
+				}
+			}
+		}
+		.div-content{
+			margin-top: 5px;
+			width: 100%;
+			height: 100vh;
+			//background-color: green;
+			box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+			border-radius: 4px;
+			.header-content{
+				width: 96%;
+				margin-top: 15px;
+				//background-color: red;
+				span{
+					font-style: normal;
+					font-weight: bold;
+					font-size: 18px;
+					color: #444444;
+					
+				}
+				button{
+					width: 26%;
+					height: 30px;
+					font-size: 12px;
+					mat-icon{
+						font-size: 20px;
+						margin-top: 4px;
+					}
+				}
+			}
+
+			.content{
+				width: 100%;
+				//height: 100vh;
+				margin-top: 20px;
+				//background-color: yellow;
+
+				.description-content{
+					width: 95%;
+					height: 25px;
+					margin-top: 10px;
+					//background-color: green;
+					.header-description-content{
+						width: 85%;
+						height: 40px;
+						//background-color: purple;
+						.box-one{
+							width: 42%;
+							//background-color: yellow; 
+							height: 20px;
+							text-align: center;
+						}
+						.box-two{
+							width: 40%; 
+							height: 20px;
+							text-align: center;
+							//background-color: purple;
+						}
+					}
+				}
+
+				.data{
+					width: 95%;
+					height: 32px;
+					//background-color: red;
+					text-align: center;
+					margin-top: 3px;
+					button{
+						font-weight: normal;
+						height: 22px;
+						width: 17%;
+						font-size: 14px;
+						text-align: center;
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						justify-content: center;
+						mat-icon{
+						font-size: 12px;
+						margin-right: 5px;
+						margin-top: 10px;
+						}
+					}
+					span{
+						width: 15%;
+						//margin-top: 5px;
+						display: inline;
+						//background-color: purple;
+						text-align: start;
+						font-size: 12px;
+					}
+					.span-professional{
+						width: 22%;
+						//margin-left: 10%;
+						//background-color: red;
+						text-align: start;
+						display: inline;
+
+					}
+				}
+				/*
+				.especialidade{
+					span{
+						margin-top: 10px;
+					}
+				}
+				.desmarcar{
+					background-color: red;
+
+					button{
+						margin-top: 10px;
+					}
+				}
+				*/
+			}
+		}
+	}
+}
+
+.title{
+	font-size: 12px;
+	font-weight: 700;
+	color: #A8A8A8;
+}
+.icon{
+	font-size: 14px;
+	margin-top: 10px;
+	font-weight: bold;
+	margin-right: 5px;
+}
+
+.evenitem { background-color: #F8F8F8; }
+.odditem { background-color: white }
