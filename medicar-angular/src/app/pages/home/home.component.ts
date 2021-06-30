@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  DeleteAppointments(idAppointments: number){
+  deleteAppointments(idAppointments: number){
     this.accountService.deleteAppointments(idAppointments).subscribe(data => {
     this.listAppointments();
     this.returnAppointments = data;

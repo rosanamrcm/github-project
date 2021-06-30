@@ -76,22 +76,21 @@ export class DialogFormComponent implements OnInit {
 
   listProfessionals(idSpecialties:string){
     this.accountService.getProfessionals(idSpecialties).subscribe(data => {
-
       this.responseProfessionals = data.results;
     });
   }
 
   
-  listScheduleDays(teste1: string, teste2:string){
-    this.accountService.getScheduleDays(teste1, teste2).subscribe(data => {
-    this.responseSchedule = data.results;
+  listScheduleDays(idProfessional: string, idSpecialties:string){
+    this.accountService.getScheduleDays(idProfessional, idSpecialties).subscribe(data => {
+      this.responseSchedule = data.results;
     });
   }
 
 
   listScheduleHours(idMed:string, idSpec:string, daySelected: string){
     this.accountService.getScheduleHour(idMed,idSpec, daySelected).subscribe(data => {
-    this.responseHour = data.results[0].horarios;
+      this.responseHour = data.results[0].horarios;
     });
   }
 
