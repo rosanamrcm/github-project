@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { AccountService } from './../../shared/account.service';
-import { Router } from '@angular/router';
+import { LoginService } from './login.service';
+
+
 
 
 @Component({
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
   };
 
 
-  constructor( private accountService: AccountService, private router: Router) { }
+  constructor( private loginService: LoginService, private router: Router) { }
 
 
 
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   async onSubmit(){
     try{
-      const result = await this.accountService.login(this.login);
+      const result = await this.loginService.login(this.login);
       console.log('Login Efetuado: ${result}');
       window.sessionStorage.setItem('name', this.login.username);
       

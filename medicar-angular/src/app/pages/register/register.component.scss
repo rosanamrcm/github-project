@@ -14,7 +14,6 @@
 	-moz-appearance: none;
 	appearance: none;
 	.box-input{
-
 		.logo{
 			width: 40%;
 			margin-bottom: 15px;
@@ -27,17 +26,14 @@
 			.input-password{
 				width: 100%;
 			}
-
 			.buttons{
 				width: 100%;
-
 				button{
-				width: 38%;
-				height: 40px;
-				font-size: 1.2em;
-				text-decoration: none;
-			}
-
+					width: 38%;
+					height: 40px;
+					font-size: 1.2em;
+					text-decoration: none;
+				}
 			}
 			.example-full-width{
 				width: 100%;

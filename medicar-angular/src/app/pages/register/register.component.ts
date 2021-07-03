@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { AccountService } from './../../shared/account.service';
 import { Router } from '@angular/router';
+import { RegisterService } from './register.service';
+
 
 
 @Component({
@@ -29,7 +31,7 @@ export class RegisterComponent implements OnInit {
   };
 
 
-  constructor( private accountService: AccountService, private router: Router,) {}
+  constructor( private registerService: RegisterService, private router: Router,) {}
 
   ngOnInit(): void {
   }
@@ -37,7 +39,7 @@ export class RegisterComponent implements OnInit {
   async onSubmit(){
 
     try {
-      const result = await this.accountService.createAccount(this.account);
+      const result = await this.registerService.createAccount(this.account);
 
       console.log(result);
 

@@ -1,10 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { DialogFormComponent } from './dialog-form/dialog-form.component';
 import { Router } from '@angular/router';
-import { AccountService } from './../../shared/account.service';
 import { ReturnAppointments } from './../../shared/model/returnAppointments.model';
-
+import { HomeService } from './home.service';
 
 
 @Component({
@@ -12,25 +11,20 @@ import { ReturnAppointments } from './../../shared/model/returnAppointments.mode
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
+
 export class HomeComponent implements OnInit {
+  
+  returnAppointments: ReturnAppointments[];  
+  nameUser: string;
+  stateReload:boolean = false;
 
-
-  returnAppointments: ReturnAppointments[];
-
-  nameUser: any;
-
-  constructor(
-    public dialog: MatDialog, 
-    private router: Router, 
-    private accountService: AccountService) {
-  }
-
+  constructor( public dialog: MatDialog, private router: Router, private homeService: HomeService) {}
 
   ngOnInit(): void {
     this.listAppointments();
-    this.nameUser = window.sessionStorage.getItem('name');
+    this.getNameUser();
   }
-
 
   logout(){ 
     window.sessionStorage.removeItem('token');
@@ -38,25 +32,38 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
- openDialog() {
+  openDialog() {
     const dialogRef = this.dialog.open(DialogFormComponent);
     dialogRef.afterClosed().subscribe(result => {
+      this.listAppointments();
     });
   }
   
 
   listAppointments(){
-    this.accountService.getSchedule().subscribe(data => {
+    this.homeService.getSchedule().subscribe(data => {
       this.returnAppointments = data;
+      this.stateReload = true;
     });
   }
 
   deleteAppointments(idAppointments: number){
-    this.accountService.deleteAppointments(idAppointments).subscribe(data => {
+    this.homeService.deleteAppointments(idAppointments).subscribe(data => {
     this.listAppointments();
     this.returnAppointments = data;
     });
-  }  
+  } 
+
+  getNameUser(){
+    const returnName = window.sessionStorage.getItem('name');
+
+    if(returnName !== null){
+      this.nameUser = returnName;
+    }
+     else{
+      this.nameUser = "Noname";
+     }
+  }
 }
 
 

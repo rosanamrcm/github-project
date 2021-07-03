@@ -5,7 +5,6 @@
 	    fxFlex.gt-sm ="60"
 	    fxFlex.gt-xs ="80"
 	    fxFlex.xs="98"
-
 		>
 		<header fxLayout="row" fxLayoutAlign="space-between center">
 			<img src="/assets/Logo.png" class="logo" routerLink="/home">
@@ -36,17 +35,19 @@
 
 						<div class="box-two" fxLayout="row" fxLayoutAlign="space-between center">
 							<h2 class="title">DATA</h2>
-							<h2 class="title" style="margin-right: 28%;">HORA</h2>
+							<h2 class="title-hour">HORA</h2>
 						</div>						
 					</div>
 				</div>
 				
+				<mat-spinner *ngIf="!stateReload"></mat-spinner>
+
 				<div class="data" *ngFor="let appointment of returnAppointments; let o = odd; let e = even;"
 				[ngClass]="{evenitem: o, odditem: e}" fxLayout="row" fxLayoutAlign="space-between center" >
 					<span>{{appointment.medico.especialidade.nome}}</span>
 					<span class="span-professional">{{appointment.medico.nome}}</span>
-					<span style="width: 12%;">{{appointment.dia}}</span>
-					<span style=" width: 5%;">{{appointment.horario}}</span>
+					<span class="span-day">{{appointment.dia}}</span>
+					<span class="span-hour">{{appointment.horario}}</span>
 					<button mat-button color="primary" (click)="deleteAppointments(appointment.id)"><mat-icon class="icon">close</mat-icon>Desmarcar</button>
 				</div>
 			</div>
