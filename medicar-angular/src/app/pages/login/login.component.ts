@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { AccountService } from './../../shared/account.service';
 import { LoginService } from './login.service';
-
-
 
 
 @Component({
@@ -14,52 +12,43 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
 
-
-   emailFormControl = new FormControl('', [
+/*
+  emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
-  ]); 
+  ]);
+  passwordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6)
+  ]);
+  */
 
-   hide = true;
+  loginForms: FormGroup;
 
-   state = false;
-
-   login = {
-    
+  hide = true;
+  state = false;
+  login = {
     username: '',
     password: ''
   };
 
+  constructor( private loginService: LoginService, private router: Router, private fb: FormBuilder) { }
 
-  constructor( private loginService: LoginService, private router: Router) { }
-
-
-
-  ngOnInit(): void {    
+  ngOnInit(): void {
+    this.loginForms = this.fb.group({
+      user: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });    
   }
 
   async onSubmit(){
     try{
       const result = await this.loginService.login(this.login);
       console.log('Login Efetuado: ${result}');
-      window.sessionStorage.setItem('name', this.login.username);
-      
+      window.sessionStorage.setItem('name', this.login.username);  
       this.router.navigate(['']);
-
     } catch(error){
-      console.error(error);
+        console.error(error);
     }
   }
-
-  checkBox(){
-    if(this.state === false){
-      this.state = true;
-    }
-
-    else{
-      this.state = false;
-
-    }
-  }
-
 }

@@ -16,14 +16,12 @@ const routes: Routes = [
 		 children: [
 		 	{ path: 'home',	component: HomeComponent },
 		],
-
   		canActivate: [AuthGuardGuard]
 	},
-	
+
 	{ path: '',	redirectTo: 'login', pathMatch: 'full' },
 	{path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
-	
 	{ path: '**', component: PageNotFoundComponent }
 
 ];

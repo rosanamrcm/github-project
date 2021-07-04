@@ -3,4 +3,4 @@ export class ResponseSchedule{
 	medico: [];
 	dia: [];
 	horarios: [];
-};
+}

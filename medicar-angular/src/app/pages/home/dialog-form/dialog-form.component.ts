@@ -1,5 +1,4 @@
 import { Component, OnInit ,Inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AccountService } from './../../../shared/account.service';
 import { ResponseSpecialist } from './../../../shared/model/responseSpecialist.model'
@@ -21,10 +20,17 @@ export class DialogFormComponent implements OnInit {
   responseProfessionals: ResponseProfessionals[];
   responseSchedule: ResponseSchedule[];
   responseHour: ResponseHour[];
-  identificate: Identificate;
-  dataSchedule:Schedule;
+  identificate: Identificate = {
+    idSpecialties:'',
+    idProfessional: '',
+    idSchedule: 0,    
+  };
+  dataSchedule:Schedule = {
+    hour: '',
+    id: 0,
+  };
   selectedDay: string;
-  selectedHour: string;    
+  selectedHour: string;
 
 /*
  identificate = {
@@ -39,17 +45,10 @@ export class DialogFormComponent implements OnInit {
   };
   */
 
-  constructor(private accountService: AccountService, private router: Router) {
-    //this.identificate.idSpecialties = "0"; 
-    //this.identificate.idProfessional = "0";
-  }
+  constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
-    
-
-    
     this.listSpecialties();
-
     /*
     this.accountService.getSpecialties().subscribe(
       (data) => {
@@ -120,16 +119,10 @@ export class DialogFormComponent implements OnInit {
   }
 
   async onSubmit(){
-
     this.dataSchedule.hour = this.selectedHour;
     this.dataSchedule.id = this.identificate.idSchedule;
     try {
-      const result = await this.accountService.createSchedule(this.dataSchedule);
-      //window.location.reload();
-      //this.load();
-      //this.listSpecialties();
-
-      
+      const result = await this.accountService.createSchedule(this.dataSchedule);      
     }  catch(error){
       console.error(error);
     }  

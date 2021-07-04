@@ -7,51 +7,57 @@
     fxFlex.gt-xs ="50"
     fxFlex.xs="90"
   >
-
     <img class="logo" src="./assets/Logo.png">
     <span>Crie sua conta</span>
-
-    <form class="form" (ngSubmit)="onSubmit()" #form="ngForm" fxLayout="column" fxLayoutAlign="center center">
-
+    <form class="form" (ngSubmit)="onSubmit()" [formGroup]="newForm" fxLayout="column" fxLayoutAlign="center center">
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Nome</mat-label>
-        <input type="text" matInput placeholder="nome"[(ngModel)]="account.username" name="username">
+        <input type="text" matInput formControlName="nameUser" placeholder="nome"[(ngModel)]="account.username" name="username">
+        <mat-error *ngIf="newForm.controls.nameUser.hasError('required')">
+          Digite seu <strong>nome</strong>
+        </mat-error>
       </mat-form-field>
    
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Email</mat-label> 
-        <input type="email" matInput [formControl]="emailFormControl" placeholder="email" [(ngModel)]="account.email" name="email" >
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-          Digite um email válido
+        <input type="email" matInput formControlName="emailFormControl" placeholder="email" [(ngModel)]="account.email" name="email" >
+        <mat-error *ngIf="newForm.controls.emailFormControl.hasError('email') && !newForm.controls.emailFormControl.hasError('required')">
+          Digite um email <strong>válido</strong>
         </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
-          Email is <strong>required</strong>
+        <mat-error *ngIf="newForm.controls.emailFormControl.hasError('required')">
+          Digite seu <strong>email</strong>
         </mat-error>
       </mat-form-field>
  
       <mat-form-field appearance="outline" class="input-password">
         <mat-label>Senha</mat-label>
-        <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="account.password" name="password">
+        <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="account.password" name="password">
         <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
           <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-      </mat-form-field>
+        <mat-error *ngIf="newForm.controls.password.hasError('required')">
+          Digite sua <strong>senha</strong>
+        </mat-error>
+        <mat-error *ngIf="newForm.controls.password.hasError('minlength')">
+          Sua senha deve ter no mínimo <strong>6 caractéres</strong>
+        </mat-error>
+        </mat-form-field>
 
-  
       <mat-form-field appearance="outline" class="input-password">
-        <mat-label>Confirmar Senha</mat-label>
-        <input matInput [type]="hideConfirmPasword ? 'password' : 'text'">
+        <mat-label>Confirme sua senha</mat-label>
+        <input matInput formControlName="passwordConfirm" [type]="hideConfirmPasword ? 'password' : 'text'">
         <button mat-icon-button matSuffix (click)="hideConfirmPasword = !hideConfirmPasword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPasword">
           <mat-icon>{{hideConfirmPasword ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
+        <mat-error *ngIf="newForm.hasError('notSame')">
+          Senhas <strong>diferentes</strong>
+        </mat-error>
       </mat-form-field>
     
-
       <div class="buttons" fxLayout="row" fxLayoutAlign="space-between center">
         <button mat-button type="button" color="primary" routerLink="/login">Cancelar</button>
-        <button mat-flat-button  type="submit" color="primary">Confirmar</button>
+        <button mat-flat-button  type="submit" color="primary" [disabled]="!newForm.valid">Confirmar</button>
       </div>
-
     </form>    
   </div>
 </div>

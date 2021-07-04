@@ -7,33 +7,31 @@
 		fxFlex.gt-xs ="50"
 		fxFlex.xs="90"
 	>
-
 		<img class="logo" src="./assets/Logo.png" fxFlex.xs="13">
-
-		<form class="form" (ngSubmit)="onSubmit()">
-
-			<mat-form-field class="div-email" appearance="outline">
+		<form class="form" (ngSubmit)="onSubmit()" [formGroup]="loginForms">
+			<mat-form-field class="form-field-email" appearance="outline">
 			   <mat-label>Email ou login</mat-label>
-			   <input type="email" matInput  placeholder="nome@email.com" [(ngModel)]="login.username" name="username">
-			   <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-	          Digite um email válido
-	        	</mat-error>
-	        	<mat-error *ngIf="emailFormControl.hasError('required')">
-	          	Email is <strong>required</strong>
+			   <input type="email" matInput formControlName="user" placeholder="nome@email.com" [(ngModel)]="login.username" name="username">
+	        	<mat-error *ngIf="loginForms.controls.user.hasError('required')">
+	          		Campo obrigatório
 	        	</mat-error>
 			</mat-form-field>
 
 			<div class="div-password">
-
 			  <mat-form-field appearance="outline" class="input-password">
 			    <mat-label>Senha</mat-label>
-			    <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="login.password" name="password">
+			    <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="login.password" name="password" formControlName="password">
 			    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
 			      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 			    </button>
+	        	<mat-error *ngIf="loginForms.controls.password.hasError('required')">
+	          		Digite sua senha
+	        	</mat-error>
+	        	<mat-error *ngIf="loginForms.controls.password.hasError('minlength')">
+	          		Sua senha deve ter no mínimo <strong>6 caractéres</strong>
+	        	</mat-error>
 			  </mat-form-field>
 			</div>
-
 
 			<section>
 			  <mat-checkbox color="primary">Lembrar minha senha</mat-checkbox>
@@ -41,7 +39,7 @@
 
 			<div class="input-buttons" fxLayout="row" fxLayoutAlign="space-between center">
 				<button mat-button color="primary" routerLink="/register">Criar Conta</button>
-				<button mat-flat-button color="primary" type="submit">Acessar</button>
+				<button mat-flat-button color="primary" type="submit" [disabled]="!loginForms.valid">Acessar</button>
 			</div>
 		</form>		
 	</div>

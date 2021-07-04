@@ -3,4 +3,4 @@ export class ResponseHour{
 	medico: [];
 	dia: [];
 	horarios: [];
-};
+}

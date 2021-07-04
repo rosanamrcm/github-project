@@ -17,32 +17,25 @@ export class AccountService {
   constructor( private http: HttpClient ) {}
 
   async createSchedule(datasSchedule: any){
-
-    let token = window.sessionStorage.getItem('token');
-    
+    let token = window.sessionStorage.getItem('token');  
     const headers = {"Authorization": `Token ${token}`};
     const body = {agenda_id: datasSchedule.id, horario: datasSchedule.hour};
-
     console.log("Dados do body: "+ datasSchedule.id);
     console.log("Dados do body: "+ datasSchedule.hour);
-
     this.http.post<MakeAppointment>(`${environment.api}/consultas/`, body, {headers}).toPromise();
   }
 
   getSpecialties(){
-
     let token = window.sessionStorage.getItem('token');
     const options = {
       headers: { 
         "Authorization": `Token ${token}`
       }
     }
-
     return this.http.get<ResponseResult>(`${environment.api}/especialidades/`, options);
   }
 
   getProfessionals(IdSpecialties:string){
-
     let token = window.sessionStorage.getItem('token');
     const options = {
       headers: { 
@@ -53,7 +46,6 @@ export class AccountService {
   }
 
   getScheduleDays(idProfessional: string, idSpecialties:string){
-
     let token = window.sessionStorage.getItem('token');
     const options = {
       headers: { 
@@ -64,7 +56,6 @@ export class AccountService {
   }
 
   getScheduleHour(idMed: string, idSpec: string, day: string){
-
     let token = window.sessionStorage.getItem('token');
     const options = {
       headers: { 
