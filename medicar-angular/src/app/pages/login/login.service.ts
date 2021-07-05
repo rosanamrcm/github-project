@@ -9,7 +9,6 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-
 	async login(user: any){
 	  	const result = await this.http.post<any>(`${environment.api}/users/login`, user).toPromise();
 	    

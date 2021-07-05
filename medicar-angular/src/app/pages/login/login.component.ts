@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { AccountService } from './../../shared/account.service';
 import { LoginService } from './login.service';
-
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
+import { SnackbarLoginComponent } from './snackbar-login/snackbar-login.component';
 
 @Component({
   selector: 'app-login',
@@ -12,27 +13,23 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
 
-/*
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(6)
-  ]);
-  */
-
   loginForms: FormGroup;
-
   hide = true;
   state = false;
   login = {
     username: '',
     password: ''
   };
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  durationInSeconds = 1;
 
-  constructor( private loginService: LoginService, private router: Router, private fb: FormBuilder) { }
+  constructor( 
+    private loginService: LoginService, 
+    private router: Router, 
+    private fb: FormBuilder, 
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.loginForms = this.fb.group({
@@ -41,14 +38,22 @@ export class LoginComponent implements OnInit {
     });    
   }
 
+  openSnackBar() {
+    this._snackBar.openFromComponent(SnackbarLoginComponent, {
+      duration: this.durationInSeconds * 1000,
+      panelClass: ['mat-toolbar', 'mat-warn'],
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+
   async onSubmit(){
     try{
       const result = await this.loginService.login(this.login);
-      console.log('Login Efetuado: ${result}');
-      window.sessionStorage.setItem('name', this.login.username);  
+      window.sessionStorage.setItem('name', this.login.username);
       this.router.navigate(['']);
     } catch(error){
-        console.error(error);
+      this.openSnackBar();
     }
   }
 }

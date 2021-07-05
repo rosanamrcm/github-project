@@ -23,7 +23,7 @@ export class DialogFormComponent implements OnInit {
   identificate: Identificate = {
     idSpecialties:'',
     idProfessional: '',
-    idSchedule: 0,    
+    idSchedule: 0,
   };
   dataSchedule:Schedule = {
     hour: '',
@@ -31,60 +31,30 @@ export class DialogFormComponent implements OnInit {
   };
   selectedDay: string;
   selectedHour: string;
-
-/*
- identificate = {
-    idSpecialties:'',
-    idProfessional: '',
-    idSchedule: 0,
-  };
-
-  dataSchedule = {
-    hour: '',
-    id: 0,
-  };
-  */
-
+  
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
     this.listSpecialties();
-    /*
-    this.accountService.getSpecialties().subscribe(
-      (data) => {
-        console.log(data.results);
-      },
-      (error) => {
-        console.log(error);
-      }
-    )
-    */
   }
 
-   getidSpecialties(Id:number){
-    console.log(Id);
+  getidSpecialties(Id:number){
     this.identificate.idSpecialties = `${Id}`;
-    console.log(this.identificate.idSpecialties);
     this.listProfessionals(this.identificate.idSpecialties);
   }
   getIdProfessional(valueId:number){
-    console.log(valueId);
     this.identificate.idProfessional = `${valueId}`;
-    console.log(this.identificate.idProfessional);
     this.listScheduleDays(this.identificate.idProfessional,this.identificate.idSpecialties);
   }
 
   getIdSchedule(idSchedule: number){
-    console.log(idSchedule);
-    this.identificate.idSchedule = idSchedule;
-    console.log( "Id da agenda: " + this.identificate.idSchedule);
+    this.identificate.idSchedule = idSchedule
   }
   
   listSpecialties(){
     this.accountService.getSpecialties().subscribe(
       data => {
         this.responseSpecialist = data.results;
-        console.log(this.responseSpecialist);
       },
       (error) => {
         console.log(error);
@@ -97,14 +67,12 @@ export class DialogFormComponent implements OnInit {
       this.responseProfessionals = data.results;
     });
   }
-
   
   listScheduleDays(idProfessional: string, idSpecialties:string){
     this.accountService.getScheduleDays(idProfessional, idSpecialties).subscribe(data => {
       this.responseSchedule = data.results;
     });
   }
-
 
   listScheduleHours(idMed:string, idSpec:string, daySelected: string){
     this.accountService.getScheduleHour(idMed,idSpec, daySelected).subscribe(data => {
@@ -113,7 +81,6 @@ export class DialogFormComponent implements OnInit {
   }
 
   callHour(id: number){
-    console.log('Dia selecionado:' + this.selectedDay);
     this.listScheduleHours(this.identificate.idProfessional,this.identificate.idSpecialties, this.selectedDay);
     this.getIdSchedule(id);
   }

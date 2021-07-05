@@ -39,7 +39,6 @@ export class HomeComponent implements OnInit {
     });
   }
   
-
   listAppointments(){
     this.homeService.getSchedule().subscribe(data => {
       this.returnAppointments = data;

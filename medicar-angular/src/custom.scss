@@ -7,6 +7,7 @@ $indigo-palette: (
  200: #9fa8da,
  300: #7986cb,
  400: #49B4BB,
+ 500: #00C203,
  // ... continues to 900
  contrast: (
    50: rgba(black, 0.87),
@@ -18,7 +19,7 @@ $indigo-palette: (
 );
 
 $custom-primary: mat-palette($indigo-palette, 400);
-$custom-accent:  mat-palette($mat-pink, A200, A100, A400);
+$custom-accent:  mat-palette($indigo-palette, 500);
 
 $custom-warn:    mat-palette($mat-red);
 

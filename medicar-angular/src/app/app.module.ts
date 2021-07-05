@@ -21,6 +21,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { AccountService } from './shared/account.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { httpInterceptorProviders } from './http-interceptors';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarLoginComponent } from './pages/login/snackbar-login/snackbar-login.component';
+import { SnackbarRegisterComponent } from './pages/register/snackbar-register/snackbar-register.component';
+import { SnackbarRegisterErrorComponent } from './pages/register/snackbar-register-error/snackbar-register-error.component';
 
 
 
@@ -33,7 +37,9 @@ import { httpInterceptorProviders } from './http-interceptors';
     HomeComponent,
     DialogFormComponent,
     PageNotFoundComponent,
-    
+    SnackbarLoginComponent,
+    SnackbarRegisterComponent,
+    SnackbarRegisterErrorComponent,  
   ],
   imports: [
     BrowserModule,
@@ -50,8 +56,8 @@ import { httpInterceptorProviders } from './http-interceptors';
     MatDialogModule,
     MatListModule,
     MatSelectModule,
-    MatProgressSpinnerModule
-    
+    MatProgressSpinnerModule,
+    MatSnackBarModule  
   ],
   providers: [
     AccountService,
