@@ -1,0 +1,40 @@
+<div class="container-users">
+	<app-top-bar></app-top-bar>
+
+	<main class="box-cards">
+		<section class="cards">
+			<div class="box-one">
+				<div class="profile">
+					<img [src]= "users?.avatar_url" class="image-profile">
+					<div class="name">
+						<h4>{{users?.name}}</h4>
+						<h5>{{users?.login}}</h5>
+					</div>
+					<div class="arrow">
+						<img src="assets/images/arrow-right.svg">
+					</div>	
+				</div>
+				<div class="delete">
+					<img src="assets/images/delete.svg">
+				</div>
+			</div>
+		
+			<div class="box-two">
+				<div class="sub-box-two">
+					<img src="assets/images/business.svg">
+					<h6>{{users?.company}}</h6>
+				</div>
+				<div class="sub-box-two">
+					<img src="assets/images/place.svg">
+					<h6>{{users?.location}}</h6>
+				</div>
+				<div class="sub-box-two">
+					<img src="assets/images/star.svg">
+					<h6>{{users?.followers}}</h6>					
+				</div>	
+			</div>
+		</section>
+	</main>
+</div>
+
+

@@ -1,0 +1,19 @@
+<div class="container-home">	
+	<div class="column-one">
+		<div class="user">
+			<img src="assets/images/logo.svg">		
+			<h3>Buscar usuário</h3>
+			<h4>Crie sua conta através do seu usuário do GitHub</h4>
+			<div class="register">
+				<div class="icon">
+					<img src="assets/images/account_circle.svg">
+				</div>
+				<input type="text" name="name" value="" placeholder="@username" [(ngModel)]="user.name">
+			</div>
+			<button (click)="submit()">Cadastrar</button>
+			<h5>Termos de <u>política</u> e <u>privacidade</u></h5>
+		</div>
+	</div>
+	<div class="column-two">
+	</div>	
+</div>
